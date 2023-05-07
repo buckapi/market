@@ -1,0 +1,59 @@
+
+
+.btn-chat {
+    /* position: fixed;
+    bottom: 76px;
+    right: 15px; */
+    border: 0;
+    /* z-index: 999; */
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    background-color: #fd7e14;
+    color: white;
+    font-size: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(255, 0, 0, 0.26);
+    cursor: pointer;
+  }
+  
+  .btn-chat:hover {
+    background-color: #fd7e14;
+  
+    
+  }
+  .btn-chat img {
+    width: 30px;
+    height: 30px;
+    filter: invert(100%);
+  }
+  .btn-chat:hover {
+    transform: translateY(-5px);
+  }
+  .btn-chat[title]::after {
+    font-family: 'Nunito', sans-serif;
+    pointer-events: none /* Deshabilitar el tooltip predeterminado */ !important;
+    content: "Soporte al cliente";
+    background-color: #fd7e14;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+   
+  }
+  
+  .btn-chat:hover[title]::after {
+    left: 1px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-8px);
+  }

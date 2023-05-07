@@ -1,0 +1,42 @@
+  <!-- Header -->
+        <header class="header position-fixed bg-theme-round-opac text-white">
+            <div class="row" style="  --bs-gutter-x:none;  --bs-gutter-y: 0;">
+                <div class="col-auto">
+                    <button id="menu" [hidden]="!router.url.includes('welcome')" class="btn btn-light btn-44  menu-btn"(click)="deploy()"><i _ngcontent-hnp-c75="" class="bi bi-person-fill size-32" ></i></button>
+                    <button id="left" type="button" class="btn btn-default btn-44 btn-rounded "   [hidden]="!router.url.includes('detail')" routerLink="/">
+                        <i class="bi bi-arrow-left"></i>
+                        <!-- <i class="bi bi-list"></i> -->
+                    </button>
+
+                    <button id="left2" type="button" class="btn btn-default btn-44 btn-rounded "   [hidden]="!router.url.includes('cart')" routerLink="/">
+                        <i class="bi bi-arrow-left"></i>
+                        <!-- <i class="bi bi-list"></i> -->
+                    </button>
+
+                    <button id="left2" type="button" class="btn btn-default btn-44 btn-rounded "   [hidden]="!router.url.includes('myorders') || ( _butler.deviceType!='Escritorio' &&  _butler.orderShowDetail)" routerLink="/">
+                        <i class="bi bi-arrow-left"></i>
+                        <!-- <i class="bi bi-list"></i> -->
+                    </button>
+                </div>
+                <div class="col">
+                    <div class="" [routerLink]="['/']">
+                        <img src="assets/assetszofri/img/logo.png" alt="" class="" style="width: 180px; margin-left: 7%;" /><!-- 
+                        <h5>OneUIUX<br /><span class="text-muted fw-light">Foodies</span></h5> -->
+                    </div>
+                </div>
+                <div class="col-auto" >
+                    <button class="btn-chat filter-btn"  (click)="iniciarChat()"  title="" [hidden]="_butler.menuDeployed || _butler.deviceType=='Escritorio'" style="margin-right: 10px;" >
+                        <img src="assets/assetszofri/img/customer-service-headset.png" alt="Soporte al cliente">
+                      </button>
+                    <button id="sliders" type="button" class="btn btn-default btn-44 btn-rounded filter-btn"  (click)="openFilter"  [hidden]="!router.url.includes('welcome')">
+                        <i class="bi bi-sliders"></i>
+                        <!-- <i class="bi bi-list"></i> -->
+                    </button>
+                   
+                    <!-- <a href="profile.html" target="_self" class="btn btn-default btn-44 btn-rounded ms-2">
+                        <i class="bi bi-person-circle"></i>
+                    </a> -->
+                </div>
+            </div>
+        </header>
+        <!-- Header ends -->

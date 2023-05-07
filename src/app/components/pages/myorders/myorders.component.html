@@ -1,0 +1,155 @@
+<div class="main-container container">
+    <!-- products --><div class="row">
+    <div class=" mb-2 col-md-6" [hidden]="_butler.deviceType!='Escritorio' && showDetail">
+        <div class="col-12  " *ngFor='let order of orders; let i = index' [hidden]="order.amount===0" (click)="viewDetail(i)" style="cursor: pointer;" >
+            <div class="card mb-3" (click)="seleccionarDiv(i)"
+            [ngClass]="{'seleccionado': indiceSeleccionado === i}">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-auto pe-0 position-relative">
+                            <!-- <div class="position-absolute end-0 top-0 z-index-1 align-self-start p-1">
+                                <button class="btn btn-sm btn-light btn-26 roudned-circle shadow-sm shadow-danger text-danger">
+                                    <i class="bi bi-heart size-10 vm"></i>
+                                </button>
+                            </div> -->
+                            <div class="avatar avatar-80 rounded-15 coverimg" *ngIf="order.car[0]!==undefined">
+                                <img src="{{order.car[0].images[0]}}" alt="" class="w-100">
+                            </div>
+                        </div>
+                        <div class="col align-self-center" *ngIf="order.car[0]!==undefined">
+                            <p class="mb-0"><small class="text-muted size-12">{{order.car[0].name}}</small>
+                            </p>
+                            <h5 class="mb-1">$ CLP {{order.amount | number :'1.0'}}</h5>
+                            <!-- <p class="size-10"><span class="text-success">Fecha:</span> {{order.createdAt| date:'dd/MM/yyyy'}}</p> -->
+                        </div>
+                        <div class="col-auto align-self-center">
+                            <a >Detalles <i class="bi bi-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" mb-2 col-md-6" [hidden]="!showDetail">
+        <div class="">
+            <div class="row mb-3">
+                <div class="col">
+                    <p><small class="text-secondary">Numero de orden:</small><br />
+                        
+                        <span style="color: red;font-family: Nunito;font-weight: 700; font-size: 26px;"># {{preview.orderNumber}}</span>
+                        </p>
+                </div>
+                <div class="col-auto text-end">
+                    <p><small class="text-secondary">Prcesado el</small><br /> __/__/2023</p>
+                </div>
+            </div>
+
+            <!-- products -->
+            <div class="row z-index-1 position-relative"  *ngIf="preview.car!==undefined" >
+                <div class="col-12 col-md-6 " *ngFor="let prev of preview.car, let i = index ">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-auto pe-0">
+                                    <figure class="avatar avatar-80 rounded-15 border">
+                                        <img src="{{prev.images[0]}}" alt="" class="w-100">
+                                    </figure>
+                                </div>
+                                <div class="col align-self-center">
+                                    <p class="mb-0"><small class="text-muted size-12">{{preview.name}}</small>
+                                    </p>
+                                    <h5>$ CLP 
+                                        
+                                        
+                                        
+                                        <!-- {{prev.price | number :'1.0'}} -->
+
+                                        <span *ngIf="prev.rate!==undefined" style="background-color: #fff4ea;border-radius: 11%;color: #fd7e14;padding: 2px;font-size: 18px;">
+                                            {{prev.price+((prev.price*prev.rate)/100) | number :'1.0'}}  
+                                        </span>
+                                        
+                                        <span *ngIf="prev.rate===undefined" style="background-color: #fff4ea;border-radius: 11%;color: #fd7e14;padding: 2px;font-size: 18px;">
+                                            {{prev.price+((prev.price*_butler.defaultRate)/100) | number :'1.0'}}  
+                                        </span>
+
+                                    </h5>
+                                    x {{prev.quantity}}
+                                    <!-- <p class="text-success"> Wait for <b>28 mins</b></p> -->
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-12  ">
+                    <div class="card mb-3 overflow-hidden bg-opac-50">
+                        <div class="card-body px-0">
+                            <ul class="list-group list-group-flush w-100 bubble-sheet log-information">
+                                <li class="list-group-item">
+                                    <div class="avatar avatar-15 border-success rounded-circle"></div>
+                                    <p><span class="text-primary">Estado </span>
+                                        <br /><small class="text-muted">{{preview.status}}</small>
+                                    </p>
+                                </li>
+                                <!-- <li class="list-group-item">
+                                    <span class="avatar avatar-15 border-success rounded-circle"></span>
+                                    <p><span class="text-primary">Accepted and Processing</span>
+                                        <br /><small class="text-muted">1 Aug 2021, 11:05 am</small>
+                                    </p>
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="avatar avatar-15 border-secondary rounded-circle"></span>
+                                    <p><span class="text-secondary">Order Ready</span>
+                                        <br /><small class="text-muted">1 Aug 2021, ETA 11:32 am</small>
+                                    </p>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col align-self-center">
+                    <h6 class="title">Montos</h6>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <p>Costos de envío</p>
+                </div>
+                <div class="col-auto"> $ CLP 0</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <p>Subtotal</p>
+                </div>
+                <div class="col-auto">$ CLP {{preview.amount | number :'1.0'}}</div>
+            </div>
+            <div class="row mb-3 text-success">
+                <div class="col">
+                    <p>Descuento</p>
+                </div>
+                <div class="col-auto">$ CLP 0</div>
+            </div>
+            <div class="row fw-bold mb-4">
+                <div class="mb-3 col-12">
+                    <div class="dashed-line"></div>
+                </div>
+                <div class="col">
+                    <p>Total</p>
+                </div>
+                <div class="col-auto">$ CLP {{preview.amount | number :'1.0'}}</div>
+            </div>
+            <div class="row mb-4" [hidden]="_butler.deviceType=='Escritorio'">
+                <div class="col-12">
+                    <a (click)="atras()" class="btn btn-primary shadow-sm btn-lg w-100 btn-rounded"><i class="bi bi-chevron-left"></i> Volver a mis compras</a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>    
+    </div>
+</div>
+</div>

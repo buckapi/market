@@ -1,0 +1,226 @@
+
+<ngx-ui-loader [bgsColor]="'#101554'"[fgsColor]="'#101554'" [pbColor]="'#101554'" [fgsSize]="15"[fgsType]= "'cube-grid'"[textColor]="'#101554'"[overlayColor]="' rgba(255,255,255,0.5)'" [text]="'cargando...'"></ngx-ui-loader>
+
+<main class="container-fluid h-100 theme-light-radial-gradient" *ngIf="state">
+   <div class="row h-100"  [hidden]="state!='login'">
+        <!-- <div class="col-11 col-sm-11 col-md-6 col-lg-5 col-xl-3 mx-auto align-self-center py-4">
+            <h2 class="mb-4"><span class="text-secondary fw-light">Identifícate</span><br />Inicia sessión</h2>
+            <div class="form-group form-floating mb-3 is-valid">
+                <input type="text" class="form-control" id="email" placeholder="Username">
+                <label class="form-control-label" for="email">Email</label>
+            </div>
+
+            <div class="form-group form-floating is-invalid mb-3">
+                <input type="password" class="form-control " id="password" placeholder="Password">
+                <label class="form-control-label" for="password">Contraseña</label>
+                <button type="button" class="text-danger tooltip-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="Enter valid Password" id="passworderror">
+                    <i class="bi bi-info-circle"></i>
+                </button>
+            </div>
+            <p class="mb-3 text-end">
+                <a class="">
+                    No tienes cuenta?<br/>
+                    entra 
+                    <span class="text-info " style="font-weight: bold;" (click)="goRegister()">Aqui</span>
+                </a>
+            </p>
+        </div>
+        <div class="col-11 col-sm-11 mt-auto mx-auto py-4">
+            <div class="row ">
+                <div class="col-12 d-grid">
+                    <a href="index.html" class="btn btn-default btn-lg btn-rounded shadow-sm text-white">Entrar</a>
+                </div>
+            </div>
+        </div> -->
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" [hidden]="state=='register' ||  _butler.usuarioLogueado">    
+            <div class="col-11 col-sm-11 col-md-6 col-lg-5 col-xl-3 mx-auto align-self-center py-4">
+                <h2 class="mb-4"><span class="text-secondary fw-light">identifícate y entra</span><br />ZOFRICARS</h2>
+                    <div class="form-group form-floating mb-3 ">
+                        <input pattern="^\S+@\S+\.\S+$" type="text " style="color: white;" class="form-control" formControlName="email"  [(ngModel)]="user.email" [ngClass]="{ 'is-invalid': loginSubmitted && U['email'].errors }" placeholder="tu email">
+                        <label class="form-control-label text-dark" for="email">Email</label>
+                    </div>
+                     <div *ngIf="loginSubmitted && U['email'].errors" >
+                        <div *ngIf="U['email'].errors['required']">Campo requerido
+                        </div>
+                    </div>
+                    <div class="form-group form-floating mb-3">
+                        <input type="password" class="form-control "  id="password" formControlName="password" [(ngModel)]="user.password" placeholder="*******"  >
+                        <label class="form-control-label" for="password">Contraseña</label>
+                    </div>
+                    <div *ngIf="loginSubmitted && U['password'].errors">
+                        <div ngClass="U['password'].errors.required">
+                        La contraseña es requerida.
+                        </div>
+                    </div>
+                    <p class="mb-3 text-end">
+                        <a  class="text-dark">
+                            No tienes cuenta? 
+                        <br/>
+                            entra 
+                            <span class="text-info"  style="cursor: pointer;" (click)="goRegister()"> 
+                                Aqui
+                            </span>
+                        </a>
+                    </p>
+            </div>
+            <div class="col-11 col-sm-11 mt-auto mx-auto py-4" [hidden]="!isError">
+                <span style="color: red;">
+                    
+                {{this.message}}
+
+            </span>
+            </div>
+            <div class="col-11 col-sm-11 mt-auto mx-auto py-4">
+                <div class="row ">
+                    <div class="col-12 d-grid" >
+                        <button type="submit" class="btn btn-success btn-lg btn-rounded shadow-sm ">Entrar</button>
+                     </div>
+                </div>
+            </div>
+            </form>
+    </div>
+    <div class="row h-100"  [hidden]="state!='register'" [ngStyle]="{ 'margin-top': _butler.deviceType==='Celular' ? '-3%' : '-1%' }">
+        
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" >    
+            <div class="col-11 col-sm-11 col-md-6 col-lg-5 col-xl-3 mx-auto align-self-center py-4">
+                <h2 class="mb-4"><span class="text-secondary fw-light">Checkout, crea tu cuenta</span><br />ZOFRICARS</h2>
+            
+                <div class="form-floating mb-3">
+                    <input  class="form-control"  upperCase  type="text" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                    <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                        <div *ngIf="f['name'].errors['required']">Campo requerido
+                        </div>
+                    </div>
+                    <!-- <input type="text" class="form-control "  placeholder="Username" id="username"> -->
+                    <label for="username">Nombre</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input  class="form-control"  upperCase  type="text" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                    <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                        <div *ngIf="f['email'].errors['required']">Campo requerido
+                        </div>
+                    </div>
+                    <!-- <input type="text" class="form-control " placeholder="Tu email" id="email"> -->
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <!-- <input type="password" class="form-control "  placeholder="Password" id="password"> -->
+                    <input type="password" class="form-control" id="passwordLog" formControlName="passwordLog" placeholder="*******"  [(ngModel)]="user.passwordLog" 
+                    [ngClass]="{ 'is-invalid': submitted && f['passwordLog'].errors}" required>
+                <div *ngIf="submitted && f['passwordLog'].errors"class="invalid-feedback">
+                    <div ngClass="f['passwordLog'].errors.required">
+                    La contraseña es requerida.
+                    </div>
+                </div>
+                    <label for="passwordLog">Contraseña</label>
+                </div>
+                <p class="mb-3"><span class="text-muted">Al hacer clic en "CONTINUAR" declaro estar de acuerdo con los </span>
+                    <a style="cursor: pointer;">Terminos y condiciones</a> <span  class="text-muted"> establecidos por ZOFRICARS</span>
+                </p>
+                <p class="mb-3 text-end text-danger" >
+                    <span [hidden]="!isError">
+                    {{message}}</span>
+                </p>
+                <p class="mb-3 text-end">
+                    <a class="">
+                        Tienes cuenta?<br/>
+                        entra 
+                        <span class="text-info " style="font-weight: bold;" (click)="goLogin()">Aqui</span>
+                    </a>
+                </p>
+            </div>
+            <div class="col-11 col-sm-11 mt-auto mx-auto py-4">
+                <div class="row ">
+                    <div class="col-12 d-grid">
+                        <!-- <a (click)="setState('presentation')"class="btn btn-default btn-lg shadow-sm btn-rounded text-white">Continuar</a> -->
+                        <button type="submmit" class="btn btn-default shadow-sm btn-lg w-100 btn-rounded text-white">Continuar</button>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row h-30"  [hidden]="state!='presentation'" [ngStyle]="{ 'margin-top': _butler.deviceType==='Celular' ? '-3%' : '-1%' }">
+        <div class="col-11 col-sm-11 col-md-6 col-lg-5 col-xl-3 mx-auto align-self-center py-4">
+            <img src="/assets/assetszofri/img/one.png" style="max-width: 100%;">
+            <h2 class="mb-4"><span class="text-secondary fw-light">2. datos</span><br />Personales</h2>
+          
+            <form [formGroup]="presentation" (ngSubmit)="sendPresentation()">
+                <div class="form-floating mb-3">
+                    <input  class="form-control"  upperCase  type="text" formControlName="rut" [ngClass]="{ 'is-invalid': submitted2 && g['rut'].errors }">
+                    <div *ngIf="submitted2 && g['rut'].errors" class="invalid-feedback">
+                        <div *ngIf="g['rut'].errors['required']">Campo requerido
+                        </div>
+                    </div>
+                    <!-- <input type="text" class="form-control "  placeholder="Username" id="username"> -->
+                    <label for="rut">Rut</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input  class="form-control"  upperCase  type="text" formControlName="phone" [ngClass]="{ 'is-invalid': submitted2 && g['phone'].errors }">
+                    <div *ngIf="submitted2 && g['phone'].errors" class="invalid-feedback">
+                        <div *ngIf="g['phone'].errors['required']">Campo requerido
+                        </div>
+                    </div>
+                    <label for="phone">Telefono</label>
+                </div>
+                <div class="form-floating mb-4">
+                    
+                    <select id="carType" class="form-control wide"[(ngModel)]="region.region" (ngModelChange)="setRegion(region)" [ngModelOptions]="{standalone: true}">
+                       <option *ngFor="let location of locations, let i = index " [ngValue]="location"> <span   style="cursor:pointer;">{{location.region}}</span></option>
+                   </select>
+                   <label for="filtertype">{{region.region}}</label>
+               </div>
+               <div class="form-floating mb-3">
+                <input  class="form-control"  upperCase  type="text" formControlName="city" [ngClass]="{ 'is-invalid': submitted2 && g['city'].errors }">
+                <div *ngIf="submitted2 && g['city'].errors" class="invalid-feedback">
+                    <div *ngIf="g['city'].errors['required']">Campo requeridoregion
+                    </div>region
+                </div>
+                <label for="city">Ciudad</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input  class="form-control"  upperCase  type="text" formControlName="postalCode" [ngClass]="{ 'is-invalid': submitted2 && g['postalCode'].errors }">
+                    <div *ngIf="submitted2 && g['postalCode'].errors" class="invalid-feedback">
+                        <div *ngIf="g['postalCode'].errors['required']">Campo requerido
+                        </div>
+                    </div>
+                    <label for="postalCode">Codigo postal</label>
+                </div>
+            </form>
+        </div>
+        <div class="col-11 col-sm-11 mt-auto mx-auto py-4">
+            <div class="row ">
+                
+                <div class="col-md-12 d-grid">
+                    <a (click)="setState('shipping')"class="btn btn-default btn-lg shadow-sm btn-rounded text-white"> <i class="bi bi-check"></i> Confirmar datos personales</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row h-100"  [hidden]="state!='shipping'" [ngStyle]="{ 'margin-top': _butler.deviceType==='Celular' ? '-3%' : '-1%' }">
+        <div class="col-11 col-sm-11 col-md-6 col-lg-5 col-xl-3 mx-auto align-self-center py-4">
+            <img src="/assets/assetszofri/img/ship.png"  style="max-width: 100%;">
+            <h2 class="mb-4"><span class="text-secondary fw-light">3. Datos de   </span><br />envio</h2>
+            <h5>Enviar a:</h5 >
+            <div class="form-floating mb-3 mt-3">  
+                <div class="tag tag-large border me-2 mb-3 shadow-sm active" bis_skin_checked="1"  >Dirección personal</div>
+                <div class="tag tag-large border me-2 mb-3 shadow-sm " bis_skin_checked="1"  >Otra dirección</div>
+            </div>
+            <div class="form-floating mb-3">
+                <textarea class="form-control h-auto" placeholder="Your Query" id="query" data-dl-input-translation="true">Punto de referencia o notas adicionales...</textarea>              
+            </div>
+        </div>
+        <div class="col-11 col-sm-11 mt-auto mx-auto py-4">
+            <div class="row ">
+                Conecctando, por favor espere...
+                <!-- <div class="col-md-6 d-grid">
+                    <a  class="btn btn btn-sm btn-outline-primary me-2 btn-rounded btn-lg shadow-sm btn-rounded "  style="margin-top:10px;border-radius:50px;"><i class="bi bi-arrow-left"></i> datos personales</a>
+                </div> -->
+                <!-- <div class="col-md-6 d-grid">
+                    <a (click)="setState('shipping')"class="btn btn-default btn-lg shadow-sm btn-rounded text-white" style="margin-top:10px;border-radius:50px;"><i class="bi bi-check"></i>Procesar pago</a>
+                </div> -->
+               
+            </div>
+        </div>
+    </div>
+</main>

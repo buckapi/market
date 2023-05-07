@@ -1,0 +1,89 @@
+/* @font-face {
+    font-family: FontAwesome;
+    src: url("/assets/assetszofri/assetszofri/js/fontawesome-webfont.674f50d287a8c48dc19b.eot");
+    src: url("/assets/assetszofri/assetszofri/js/fontawesome-webfont.674f50d287a8c48dc19b.eot?#iefix&v=4.7.0") format("embedded-opentype"),
+	url("/assets/assetszofri/assetszofri/js/fontawesome-webfont.af7ae505a9eed503f8b8.woff2") format("woff2"),
+	url("/assets/assetszofri/assetszofri/js/fontawesome-webfont.fee66e712a8a08eef580.woff") format("woff"),
+	url("/assets/assetszofri/assetszofri/js/fontawesome-webfont.b06871f281fee6b241d6.ttf") format("truetype"),
+	url("/assets/assetszofri/assetszofri/js/fontawesome-webfont.912ec66d7572ff821749.svg#fontawesomeregular") format("svg");
+	 font-weight: 400;
+    font-style: normal
+}
+	 */
+ngx-gallery-arrows.ngx-gallery-image-size-contain .fa {
+    background: #fff;
+    padding: 5px;
+    color: --bs-blue !important; 
+}
+
+.fa-arrows:before {
+    content: "\F047"
+}
+.fa-arrow-left:before {
+    content: "\F060"
+}
+
+.fa-arrow-right:before {
+    content: "\F061"
+}
+.fa-arrow-circle-left:before {
+    content: "\F0A8"
+}
+
+.fa-arrow-circle-right:before {
+    content: "\F0A9"
+}
+/* a.boton{
+
+}
+  */
+a.boton:after,
+a.boton:before{
+	width: 80px;
+	height: 20px;
+	content: '';
+	display: block;
+	background: #f4f9fb69;
+	transform: rotate(45deg);
+	top: -0px;
+	position: absolute;
+	transition: none;
+	right:-9%;
+	cursor: pointer;
+}
+ 
+a.boton:before{
+	left: -48%;
+}
+ 
+a.boton:hover{
+	/* text-shadow: 0 1px 1px rgba(0,0,0,0.5); */
+	/* background-color: #101554; */
+	transform: translateY(5px);
+    transition: background-color 0.5s ease, opacity 0.5s ease;
+    box-shadow: 4px 7px 4px 1px rgb(39 45 101 / 24%);
+}
+ 
+a.boton:hover:after,
+a.boton:hover:before{
+	transform: rotate(45deg), scaleX(130%);
+	background: rgba(255,255,255,0.1);
+	transition: all ease 01s;
+}
+ 
+a.boton:hover:after{
+	right: 130%;
+}
+ 
+a.boton:hover:before{
+	left: 130%;
+}
+.ngx-gallery { 
+	display: inline-block; 
+	margin-bottom: 20px; background-size:contain; }
+
+	@import url('https://fonts.googleapis.com/css?family=Nunito');
+	.form-label{
+		font-family: Nunito;
+		 /* color:darkblue; */
+	}

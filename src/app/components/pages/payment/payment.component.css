@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+.form-label{
+    font-family: Nunito;
+     color:darkblue;
+}
+.fullscreen-bg {
+    font-family: Nunito;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #3edab4;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  @import url('https://fonts.googleapis.com/css?family=Nunito');
+  .icon-container {
+    margin-top: 30%;
+    max-height: 210px; /* Establece la altura máxima en 45px */
+    font-family: Nunito;
+    margin: 170px 30px 30px 30px;
+    padding: 10px; /* Añade un padding de 20px alrededor del contenido */
+    border-radius: 7%; /* Establece el radio de la esquina de la caja a 50%, creando un borde circular */
+    background-color: white; /* Establece el color de fondo en blanco */
+    height: 100vh; /* Establece la altura de la pantalla */
+    
+  display: inline-block; /* Hace que el contenedor sea un contenedor flex */
+  justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+  }
+  .div1, .div2 {
+    display: block;
+    width: 100%;
+    margin: 10px; 
+    display: flex; /* Hace que el contenedor sea un contenedor flex */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+  }

@@ -1,0 +1,42 @@
+a.boton{
+
+}
+ 
+a.boton:after,
+a.boton:before{
+	width: 80px;
+	height: 20px;
+	content: '';
+	display: block;
+	background: #f4f9fb69;
+	transform: rotate(45deg);
+	top: 20px;
+	position: absolute;
+	transition: none;
+	right:-9%;
+	cursor: pointer;
+}
+ 
+a.boton:before{
+	left: -48%;
+}
+ 
+a.boton:hover{
+	text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+	
+}
+ 
+a.boton:hover:after,
+a.boton:hover:before{
+	transform: rotate(45deg), scaleX(130%);
+	background: rgba(255,255,255,0.1);
+	transition: all ease 01s;
+}
+ 
+a.boton:hover:after{
+	right: 130%;
+}
+ 
+a.boton:hover:before{
+	left: 130%;
+}
